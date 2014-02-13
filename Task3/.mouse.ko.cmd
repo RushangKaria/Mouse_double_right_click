@@ -1,0 +1,1 @@
+cmd_/home/esp/Desktop/cse438-karia-assgn04/Task3/mouse.ko := arm-angstrom-linux-gnueabi-ld -EL -r  -T /home/esp/Kernel_Source_Trees/Angstrom_Linux/kernel/kernel/scripts/module-common.lds --build-id  -o /home/esp/Desktop/cse438-karia-assgn04/Task3/mouse.ko /home/esp/Desktop/cse438-karia-assgn04/Task3/mouse.o /home/esp/Desktop/cse438-karia-assgn04/Task3/mouse.mod.o

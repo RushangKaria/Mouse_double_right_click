@@ -1,0 +1,37 @@
+PART B
+
+To compile 
+
+make
+
+to run
+
+signal_to_all
+
+
+APPROACH
+
+A library is created to deal with sending one signal to all the threads ---> the signal handler is the library
+
+Please copy the library *.so files to /usr/lib and execute ldconfig (on the beagleboard)-->cross compile on VM ----- you can use the copy script that i provided ...type ./copy
+
+you may use chmod 0755 on the file if you want
+
+Once ldconfig completes you can run it
+
+APPROACH
+
+My approach goes as follows
+
+I implement a single handler for the entire program
+
+I have a single handler thread (in this case main) whose job is to catch the first signal
+
+In other words, The kernel issues a signal to the process.
+
+The signal handler is invoked, a check is made to see if the handler is running in the context of the main thread. 
+
+If no, then the signal is redirected to the main thread using pthread_kill(), Now the signal is guaranteed to be dealt in the context of the main thread since thread signalling is used and not process signalling.
+
+The main thread duplicates the signal and sends it to all the threads
+Threads who are registered receive and quit...threads who are not registered continue and then quit when they increment a variable to a certain no

@@ -1,0 +1,10 @@
+Please view the code only in the machine in the lab (the VM )
+
+Since the VM has a huge screen and resolution if you view the code any place else it will have a lot of tab spacing, but it will look neat in the VM.
+
+
+If any userspace program does not run please use chmod 777 as root and check again
+
+Since a pid of the thread is the same as pid of main thread (process) i have used (int)pthread_self() to display the thread ids. They may  be negative.
+
+Any way to compile run and expectations are described in the relevant tasks readme file.

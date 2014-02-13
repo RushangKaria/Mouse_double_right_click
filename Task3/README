@@ -1,0 +1,51 @@
+To compile
+
+make
+
+to run
+
+./test
+
+APPROACH
+
+I have revised the mousedev module to detect double clicks
+
+you can run diff mouse.c mousedev.c to check the changes (which are also commented)
+
+
+APPROACH FOR USER SPACE PROGRAM
+--------------------------------------------------------------------------
+
+There are two threads.
+
+One thread is the watcher thread who reads the mouse to invoke the module. It registers via ioctl...on release autmatic unregistration is done
+
+The main thread is computing (incrementing) some value.
+
+When a double right click is made, a SIGTERM is sent by the kernel to the process which invokes the signal handler like in task2.
+
+A long jump is made, the results are displayed and the program terminates.
+
+APPROACH FOR KERNEL MODULE
+-------------------------------------------------------------
+
+I have changed the minor numbers and device names so that conflict does not arrive.
+
+Devices are displayed with an extra 's'.
+
+so mouse0 will mostly become mouses0...I am not sure about the numbers though. They appear to be different on different machines. If user space program cannot open then please look which event was used for task 4 and select the mouse
+corresponding to that event (if mouse1 event3 appeared in one line in /proc/bus/input/devices and then mouses8 got added ,then use mouses8 if event3 was used)
+
+Please make this change in the open() of the user space program.
+
+
+I have changed the mouse_key_event() function to detect double clicks of the right mouse button.
+
+It checks if the right mouse button is Pressed (it ignores when you relase the button which also generates a right mouse event).
+It stores the jiffies associated with this click.
+
+If a second click comes andthe difference of clicks/HZ (for second conversion) is zero then a signal is sent...note there can be some inaccuracies in precision
+
+If a right click is made and then a left click then the state is reset.
+
+However scrolling of the mouse does not affect it. So you can make two right clicks anywhere in the screen 

@@ -1,0 +1,31 @@
+Part A
+
+to compile
+
+make
+
+to run
+
+./demonstration
+
+APPROACH
+
+I create few threads and a main thread. I use SIGIO signal on the event1 associated with mouse0 ( Please change the file descriptor ) open method if there are any problems
+
+First I set up a signal handler in the main thread so that all the threads can inherit the signals. 
+After creating the threads I block all the threads for the main thread ( I did this because the main thread was catching all the signals always)
+
+The threads unblock the signals and start doing there work of incrementing and sleeping for about 5 iterations.
+
+Whenever a signal comes one thread catches the signal. The proof is that the signal handler executes only once per signal.
+
+Consider a signal as a mouse-click. Do not scroll the mouse please (since a lot of signals are generated)
+
+One mouse click generates one signal 
+
+Therefore one for left click press
+One for left click release
+
+So two signals per click
+
+Observe output and thread id.

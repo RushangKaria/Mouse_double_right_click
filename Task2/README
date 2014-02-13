@@ -1,0 +1,19 @@
+task2
+
+to compile 
+
+make
+
+to run
+
+./task2
+
+APPROACH
+
+The approach i have taken is to set alarm(1) ...1 second computation whenever the main() starts... it is the first line of main
+
+Then it sets up the handler and long jump and begins to increment a variable.
+
+When the alarm occurs the execution transfers to the handler which long jumps back, but this time the setjmp() condition fails.
+
+The result is printed and the program quits.

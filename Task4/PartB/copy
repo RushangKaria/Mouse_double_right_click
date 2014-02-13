@@ -1,0 +1,2 @@
+cp -f ./*.so /usr/lib
+ldconfig
