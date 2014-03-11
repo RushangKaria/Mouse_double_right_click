@@ -10,6 +10,8 @@ to run
 
 APPROACH
 
+Set Jump long jump demonstrations
+
 The approach i have taken is to set alarm(1) ...1 second computation whenever the main() starts... it is the first line of main
 
 Then it sets up the handler and long jump and begins to increment a variable.
